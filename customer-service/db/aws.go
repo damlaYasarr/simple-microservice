@@ -6,25 +6,17 @@ package db
 import (
 	"context"
 	"encoding/json"
-	"fmt"
 	"log"
-	"os"
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/config"
 	"github.com/aws/aws-sdk-go-v2/service/secretsmanager"
-	"github.com/joho/godotenv"
 )
 
 func GetSecretValue() map[string]string {
 
-	if err := godotenv.Load(); err != nil {
-		fmt.Println("Error loading .env file:", err)
-		return nil
-	}
-	secretnameaws := os.Getenv("SECRET_NAME")
-	secretName := secretnameaws
-	region := "us-east-1f"
+	secretName := "rds!db-289364a0-1aaa-45f5-95be-0b43d3e73597"
+	region := "us-east-1"
 
 	config, err := config.LoadDefaultConfig(context.TODO(), config.WithRegion(region))
 	if err != nil {
